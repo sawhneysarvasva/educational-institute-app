@@ -1,2 +1,3 @@
 # educational-institute-app
-Website to develop educational institute app.
+Educational Institute management System -Website which helps to manage educational insititute
+
