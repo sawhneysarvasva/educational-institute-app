@@ -6,15 +6,32 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(of = {"id"},callSuper = false)
 @Entity
-public class BatchClass extends BaseEntity{
+public class BatchClass{
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	Long id;
 	@ManyToOne
 	Batch batch;
 	Date date;
@@ -34,45 +51,7 @@ public class BatchClass extends BaseEntity{
 			inverseJoinColumns=@JoinColumn(name="student_id"))
 	Set<Student> homeworkCompletedStudents=new HashSet<Student>();
 	
-	public BatchClass(Batch batch, Date date, HomeWork homeWork) {
-		super();
-		this.batch = batch;
-		this.date = date;
-		this.homeWork = homeWork;
-	}
-	public BatchClass() {
-		super();
-	}
-	public Batch getBatch() {
-		return batch;
-	}
-	public void setBatch(Batch batch) {
-		this.batch = batch;
-	}
-	public Date getDate() {
-		return date;
-	}
-	public void setDate(Date date) {
-		this.date = date;
-	}
-	public HomeWork getHomeWork() {
-		return homeWork;
-	}
-	public void setHomeWork(HomeWork homeWork) {
-		this.homeWork = homeWork;
-	}
-	public Set<Student> getPresentStudents() {
-		return presentStudents;
-	}
-	public void setPresentStudents(Set<Student> presentStudents) {
-		this.presentStudents = presentStudents;
-	}
-	public Set<Student> getHomeworkCompletedStudents() {
-		return homeworkCompletedStudents;
-	}
-	public void setHomeworkCompletedStudents(Set<Student> homeworkCompletedStudents) {
-		this.homeworkCompletedStudents = homeworkCompletedStudents;
-	}
+	
 	
 	
 }

@@ -1,11 +1,31 @@
 package com.sarvasva.educationalinstituteapp.model;
 
+import java.util.Date;
+import java.util.Set;
+
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.MappedSuperclass;
 
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(of = {"id"},callSuper = false)
 @Entity
-public class Doubt extends BaseEntity{
+public class Doubt {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	Long id;
 	@Lob
 	String descrption;
 	Boolean isSolved;
@@ -13,33 +33,7 @@ public class Doubt extends BaseEntity{
 	Batch batch;
 	
 	
-	public Doubt(String descrption, Boolean isSolved, Batch batch) {
-		super();
-		this.descrption = descrption;
-		this.isSolved = isSolved;
-		this.batch = batch;
-	}
-	public Doubt() {
-		super();
-	}
-	public String getDescrption() {
-		return descrption;
-	}
-	public void setDescrption(String descrption) {
-		this.descrption = descrption;
-	}
-	public Boolean getIsSolved() {
-		return isSolved;
-	}
-	public void setIsSolved(Boolean isSolved) {
-		this.isSolved = isSolved;
-	}
-	public Batch getBatch() {
-		return batch;
-	}
-	public void setBatch(Batch batch) {
-		this.batch = batch;
-	}
+	
 	
 	
 	

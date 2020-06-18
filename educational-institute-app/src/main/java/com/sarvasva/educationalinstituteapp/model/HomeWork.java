@@ -1,51 +1,36 @@
 package com.sarvasva.educationalinstituteapp.model;
 
+import java.util.Date;
+import java.util.Set;
+
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToOne;
 
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(of = {"id"},callSuper = false)
 @Entity
-public class HomeWork extends BaseEntity{
+public class HomeWork{
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	Long id;
 	@Lob
 	String description;
 	Boolean isCompleted;
 	@OneToOne
 	BatchClass batchClass;
-	
-	public HomeWork(String description, Boolean isCompleted, BatchClass batchClass) {
-		super();
-		this.description = description;
-		this.isCompleted = isCompleted;
-		this.batchClass = batchClass;
-	}
-
-	public HomeWork() {
-		super();
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public Boolean getIsCompleted() {
-		return isCompleted;
-	}
-
-	public void setIsCompleted(Boolean isCompleted) {
-		this.isCompleted = isCompleted;
-	}
-
-	public BatchClass getBatchClass() {
-		return batchClass;
-	}
-
-	public void setBatchClass(BatchClass batchClass) {
-		this.batchClass = batchClass;
-	}
 	
 	
 	

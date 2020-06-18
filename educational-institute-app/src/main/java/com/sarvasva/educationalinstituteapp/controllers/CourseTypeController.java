@@ -5,19 +5,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.sarvasva.educationalinstituteapp.repositories.CourseRepository;
+import com.sarvasva.educationalinstituteapp.repositories.CourseTypeRepository;
 
 @Controller
-public class CourseController {
+public class CourseTypeController {
 	@Autowired
-	CourseRepository courseRepository;
+	CourseTypeRepository courseTypeRepository;
 	
-	@GetMapping({"/courses","/courses/","/courses/index.html"})
+	@GetMapping({"/coursetypes","/coursetypes/","/coursetypes/index.html"})
 	String getCourses(Model model) {
 		
-		model.addAttribute("courses",courseRepository.findAll());
-		return "Course/index";
+		model.addAttribute("courseTypes",courseTypeRepository.findAll());
+		return "CourseType/index";
 	}
 	
-
 }

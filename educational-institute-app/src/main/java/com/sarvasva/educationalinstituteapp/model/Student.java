@@ -3,11 +3,31 @@ package com.sarvasva.educationalinstituteapp.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.MappedSuperclass;
 
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(of = {"id"},callSuper = false)
 @Entity
+@DiscriminatorValue( value="STUDENT" )
 public class Student extends Person {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	Long id;
 	String className;
 	
 	@ManyToMany(mappedBy = "students")
@@ -16,48 +36,15 @@ public class Student extends Person {
 	Set<BatchClass> presentBatchClasses=new HashSet<BatchClass>();
 	@ManyToMany(mappedBy = "homeworkCompletedStudents")
 	Set<BatchClass> homeworkCompletedBatchClasses=new HashSet<BatchClass>();
-
-	public Student(String firstName, String lastName, String mobileNo, String email, Address address,
-			String className) {
-		super(firstName, lastName, mobileNo, email, address);
+	
+	public Student(String firstName, String lastName, String mobileNo, String email, String password, Boolean isEnabled,
+			String address, String className) {
+		super(firstName, lastName, mobileNo, email, password, isEnabled, address);
 		this.className = className;
 	}
 
-	public Student(String firstName, String lastName, String mobileNo, String email, Address address) {
-		super(firstName, lastName, mobileNo, email, address);
-	}
+	
 
-	public String getClassName() {
-		return className;
-	}
-
-	public void setClassName(String className) {
-		this.className = className;
-	}
-
-	public Set<BatchClass> getPresentBatchClasses() {
-		return presentBatchClasses;
-	}
-
-	public void setPresentBatchClasses(Set<BatchClass> presentBatchClasses) {
-		this.presentBatchClasses = presentBatchClasses;
-	}
-
-	public Set<BatchClass> getHomeworkCompletedBatchClasses() {
-		return homeworkCompletedBatchClasses;
-	}
-
-	public void setHomeworkCompletedBatchClasses(Set<BatchClass> homeworkCompletedBatchClasses) {
-		this.homeworkCompletedBatchClasses = homeworkCompletedBatchClasses;
-	}
-
-	public Set<Batch> getBatches() {
-		return batches;
-	}
-
-	public void setBatches(Set<Batch> batches) {
-		this.batches = batches;
-	}
 	
 	
 	
