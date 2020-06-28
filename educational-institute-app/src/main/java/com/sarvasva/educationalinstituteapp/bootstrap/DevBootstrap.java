@@ -1,10 +1,13 @@
 package com.sarvasva.educationalinstituteapp.bootstrap;
 
 
+import java.util.Date;
+
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
+import com.sarvasva.educationalinstituteapp.model.Batch;
 import com.sarvasva.educationalinstituteapp.model.Course;
 import com.sarvasva.educationalinstituteapp.model.CourseType;
 import com.sarvasva.educationalinstituteapp.model.Faculty;
@@ -52,6 +55,18 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent>{
 		Course class12Physics=new Course("Class 12 Physics",class12);
 		Course class10Maths=new Course("Class 12 Maths",class10);
 		Course class10Physics=new Course("Class 12 Physics",class10);
+		
+		Batch class12MathsBatch1=new Batch(new Date(2020,6,1),20,class12Maths,(Faculty)renu);
+		Batch class12MathsBatch2=new Batch(new Date(2020,5,1),20,class12Maths,(Faculty)renu);
+		Batch class10MathsBatch1=new Batch(new Date(2020,6,1),20,class10Maths,(Faculty)renu);
+		Batch class10MathsBatch2=new Batch(new Date(2020,5,1),20,class10Maths,(Faculty)renu);
+		
+		class12Maths.getBatches().add(class12MathsBatch1);
+		class12Maths.getBatches().add(class12MathsBatch2);
+		class10Maths.getBatches().add(class10MathsBatch1);
+		class10Maths.getBatches().add(class10MathsBatch2);
+		
+		
 		courseTypeRepository.save(class12);
 		courseTypeRepository.save(class10);
 		courseRepository.save(class12Maths);

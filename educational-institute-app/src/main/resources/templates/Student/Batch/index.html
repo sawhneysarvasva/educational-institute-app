@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{fragments/main_layout}" >
+  
+<head>
+ <title>List of Courses</title>
+</head>
+<body>
+<body>
+<div  layout:fragment="content" class="container mySpace">
+
+	<h1>List of Batches </h1>
+	<div  th:if="!${batches}">
+	Currently No Batches of course are ongoing. Please check at some other time.
+	</div>
+	<div  th:if="${batches}">
+	
+<table  class="table table-hover">
+	<thead>
+		<tr>
+		<th>
+		Batch ID
+		</th>
+		<th>
+		Batch Course
+		</th>
+		<th>
+		Batch Start Date
+		</th>
+		<th>
+		Batch Faculty
+		</th>
+		<th>
+		
+		</th>
+		
+	</thead>
+	<tbody>
+		<tr th:each="batch : ${batches}">
+		<td th:text=${batch.id}>
+		
+		</td>
+		<td th:text=${batch.course.name}>
+		
+		</td>
+		<td th:text=${#dates.format(batch.startDate,'dd-MM-yy')}>
+		
+		</td>
+		
+		<td th:text=${batch.faculty.firstName}>
+		
+		</td>
+		<td>
+			<div  th:if="!${studentSuscribedBatch}">
+				
+				<form method="POST" th:action="@{/student/courses/batches/suscribe/}">
+    				<input type="hidden" name="courseId" id="personId" th:value="${batch.course.id}" />
+    				<input type="hidden" name="batchId" id="batchId" th:value="${batch.id}" />
+    				<button type="submit" name="submit" value="value" class="btn btn-primary ">Subscribe</button>
+				</form> 
+			</div>
+			<div  th:if="${studentSuscribedBatch==batch}">
+				
+				<form method="POST" th:action="@{/student/courses/batches/unsuscribe}">
+    				<input type="hidden" name="courseId" id="personId" th:value="${batch.course.id}" />
+    				<input type="hidden" name="batchId" id="batchId" th:value="${batch.id}" />
+    				<button type="submit" name="submit" value="value" class="btn btn-secondary  ">UnSubscribe</button>
+				</form> 
+			</div>
+			
+			
+		</td>
+		</tr>
+	</tbody>
+</table>
+</div>
+</div>
+
+
+</body>
+</html>

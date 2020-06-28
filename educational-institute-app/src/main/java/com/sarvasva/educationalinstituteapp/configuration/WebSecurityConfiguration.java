@@ -31,8 +31,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter   {
 	protected void configure(HttpSecurity http) throws Exception {
 		
 		  http.authorizeRequests() 
-		  .antMatchers("/student").hasAnyRole( "STUDENT")
-		  .antMatchers("/faculty").hasAnyRole("FACULTY") 
+		  .antMatchers("/student/**").hasAnyRole( "STUDENT")
+		  .antMatchers("/faculty/**").hasAnyRole("FACULTY") 
 		  .antMatchers("/css/**","/js/**", "/images/**","/login").permitAll()
 		  .and().formLogin().loginPage("/login").successHandler(new MyAuthenticationSuccessHandler() ).failureUrl("/login-error")
 		  .and().logout().logoutSuccessUrl("/login-logout-success");

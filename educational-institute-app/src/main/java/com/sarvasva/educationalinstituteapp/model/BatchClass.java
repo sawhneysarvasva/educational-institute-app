@@ -40,16 +40,17 @@ public class BatchClass{
 	
 	@ManyToMany
 	@JoinTable(
-			name="batch_class_present_student",
+			name="batch_class_present_suscription",
 			joinColumns=@JoinColumn(name="batch_id"),
-			inverseJoinColumns=@JoinColumn(name="student_id"))
-	Set<Student> presentStudents=new HashSet<Student>();
+			inverseJoinColumns=@JoinColumn(name="suscription_id"))
+	Set<Suscription> presentSuscriptions=new HashSet<Suscription>();
+	
 	@ManyToMany
 	@JoinTable(
-			name="batch_class_homework_comp_student",
+			name="batch_class_homework_comp_suscription",
 			joinColumns=@JoinColumn(name="batch_id"),
-			inverseJoinColumns=@JoinColumn(name="student_id"))
-	Set<Student> homeworkCompletedStudents=new HashSet<Student>();
+			inverseJoinColumns=@JoinColumn(name="suscription_id"))
+	Set<Student> homeworkCompletedSuscriptions=new HashSet<Student>();
 	
 	
 	

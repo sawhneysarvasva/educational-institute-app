@@ -2,23 +2,41 @@
 <html xmlns:th="http://www.thymeleaf.org"
   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
   layout:decorate="~{fragments/main_layout}" >
+  
 <head>
  <title>List of Courses</title>
 </head>
 <body>
 <body>
 <div  layout:fragment="content" class="container mySpace">
+<!-- <script type="text/javascript">
+	$( document ).ready(function() {
+		$(".btnViewBatches").on("click", function(){
+			var href=$(this).attr('href');
+			$.get( href, function( batches,error ) {
+				 
+				});
+			$(".batchModal").modal();
+			
+			});
+	});
+</script> -->
 	<h1>List of Courses</h1>
 <table  class="table table-hover">
 	<thead>
 		<tr>
 		<th>
-		ID
+		Course ID
 		</th>
 		<th>
-		Name
+		Course Name
 		</th>
+		<th>
+		Course Type
+		</th>
+		<th>
 		
+		</th>
 		
 		
 	</thead>
@@ -33,11 +51,17 @@
 		<td th:text=${course.courseType.name}>
 		
 		</td>
+		<td>
+		
+		<a th:href="@{/student/courses/{courseId}/batches (courseId = ${course.id})}">
+			<button type="button"  class="btn btn-primary btnViewBatches">View Batches</button>
+		</a>
+		
+		</td>
 		</tr>
 	</tbody>
 </table>
 </div>
-
 
 </body>
 </html>

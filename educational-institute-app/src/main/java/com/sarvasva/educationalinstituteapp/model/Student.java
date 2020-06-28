@@ -3,13 +3,13 @@ package com.sarvasva.educationalinstituteapp.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -30,12 +30,11 @@ public class Student extends Person {
 	Long id;
 	String className;
 	
-	@ManyToMany(mappedBy = "students")
-	Set<Batch> batches=new HashSet<Batch>();
-	@ManyToMany(mappedBy = "presentStudents")
-	Set<BatchClass> presentBatchClasses=new HashSet<BatchClass>();
-	@ManyToMany(mappedBy = "homeworkCompletedStudents")
-	Set<BatchClass> homeworkCompletedBatchClasses=new HashSet<BatchClass>();
+	@OneToMany(cascade = CascadeType.ALL)
+	Set<Suscription> suscriptions=new HashSet<Suscription>();
+	
+	
+	
 	
 	public Student(String firstName, String lastName, String mobileNo, String email, String password, Boolean isEnabled,
 			String address, String className) {
